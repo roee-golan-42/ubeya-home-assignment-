@@ -16,6 +16,7 @@ export default defineConfig({
 
   use: {
     headless: process.env.CI ? true : false,
+    testIdAttribute: 'data-test',
     trace: 'on-first-retry',
   },
 

@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class LoginPage extends BasePage {
@@ -17,5 +17,9 @@ export class LoginPage extends BasePage {
         await this.userNameField.fill(userName);
         await this.passwordField.fill(password);
         await this.loginButton.click();
+    }
+
+    public async assertRedirectionToInventoryPage() {
+        expect(this.page.url()).toContain('/inventory.html');
     }
 }
