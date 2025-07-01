@@ -4,17 +4,15 @@ This repository contains end-to-end (E2E) tests using [Playwright](https://playw
 
 ## 📁 Project Structure
 
+```
 .
-├── tests/ # Your test files (e.g., example.spec.ts)
+├── tests/                # Your test files (e.g., example.spec.ts)
 ├── playwright.config.ts # Playwright configuration
-├── package.json # Project dependencies and scripts
+├── package.json          # Project dependencies and scripts
 └── .github/
-└── workflows/
-└── playwright.yml # GitHub Actions workflow
-
-markdown
-Copy
-Edit
+    └── workflows/
+        └── playwright.yml # GitHub Actions workflow
+```
 
 ## 🚀 Getting Started
 
@@ -28,105 +26,106 @@ Edit
 
 ```bash
 npm install
-▶️ Running Tests Locally
-Run all tests
-bash
-Copy
-Edit
+```
+
+## ▶️ Running Tests Locally
+
+### Run all tests
+
+```bash
 npx playwright test
-Run tests with UI (headed mode)
-bash
-Copy
-Edit
+```
+
+### Run tests with UI (headed mode)
+
+```bash
 npx playwright test --headed
-View last HTML report
-bash
-Copy
-Edit
+```
+
+### View last HTML report
+
+```bash
 npx playwright show-report
-📷 Tracing and Debugging
-Playwright is configured to collect a trace on the first retry of a failed test. You can view the trace like this:
+```
 
-bash
-Copy
-Edit
+## 📷 Tracing and Debugging
+
+Playwright is configured to collect a **trace on the first retry** of a failed test. You can view the trace like this:
+
+```bash
 npx playwright show-trace trace.zip
-Trace files will appear inside the .playwright folder automatically after test retries.
+```
 
-🧪 Test Configuration
-The Playwright config (playwright.config.ts) is set to:
+Trace files will appear inside the `.playwright` folder automatically after test retries.
 
-Run tests in parallel
+## 🧪 Test Configuration
 
-Use HTML reporter
+The Playwright config (`playwright.config.ts`) is set to:
 
-Retry failed tests only on CI
+- Run tests in parallel
+- Use HTML reporter
+- Retry failed tests **only on CI**
+- Run Chromium browser by default
+- Use `data-test` as the `testIdAttribute`
+- Collect traces on first retry
 
-Run Chromium browser by default
-
-Use data-test as the testIdAttribute
-
-Collect traces on first retry
-
-ts
-Copy
-Edit
+```ts
 use: {
   headless: process.env.CI ? true : false,
   testIdAttribute: 'data-test',
   trace: 'on-first-retry',
 },
-🔁 Continuous Integration (GitHub Actions)
-This project is configured to run tests automatically on every push to the main branch using GitHub Actions.
+```
 
-Workflow file
-Located at: .github/workflows/playwright.yml
+## 🔁 Continuous Integration (GitHub Actions)
 
-Key steps:
-Runs on ubuntu-latest
+This project is configured to run tests automatically on **every push to the `main` branch** using GitHub Actions.
 
-Installs Node and dependencies
+### Workflow file
 
-Installs Playwright browsers
+Located at: `.github/workflows/playwright.yml`
 
-Runs npx playwright test
+### Key steps:
 
-Uploads the HTML report as a GitHub artifact
+- Runs on `ubuntu-latest`
+- Installs Node and dependencies
+- Installs Playwright browsers
+- Runs `npx playwright test`
+- Uploads the HTML report as a GitHub artifact
 
-View Reports
-Go to the Actions tab
+### View Reports
 
-Select the latest workflow run
+1. Go to the [Actions tab](../../actions)
+2. Select the latest workflow run
+3. Download the `playwright-report` artifact
+4. Unzip and open `index.html` in your browser
 
-Download the playwright-report artifact
+## 📦 Scripts
 
-Unzip and open index.html in your browser
+You can optionally add these scripts to `package.json` for convenience:
 
-📦 Scripts
-You can optionally add these scripts to package.json for convenience:
-
-json
-Copy
-Edit
+```json
 "scripts": {
   "test": "npx playwright test",
   "test:headed": "npx playwright test --headed",
   "report": "npx playwright show-report",
   "install:browsers": "npx playwright install --with-deps"
 }
+```
+
 Then run:
 
-bash
-Copy
-Edit
+```bash
 npm run test
 npm run report
-🧰 Useful Resources
-Playwright Docs
+```
 
-Playwright Test Reporters
+## 🧰 Useful Resources
 
-GitHub Actions Docs
+- [Playwright Docs](https://playwright.dev/)
+- [Playwright Test Reporters](https://playwright.dev/docs/test-reporters)
+- [GitHub Actions Docs](https://docs.github.com/en/actions)
 
-📄 License
-This project is licensed under the MIT License.
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
