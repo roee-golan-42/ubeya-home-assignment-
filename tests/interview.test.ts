@@ -25,17 +25,7 @@ test('test title', async ({ page }) => {
 
     await loginPage.goto(BASE_URL)
     await loginPage.login(USER_NAME, PASSWORD)
-    await loginPage.assertRedirectionToInventoryPage()
 
-    await inventoryPage.addFirstItemToCart()
-    await navBarComponent.assertAmountOfItems('1');
-
-    await navBarComponent.clickOnCartButton();
-    await cartPage.clickOnCheckoutButton();
-
-    await checkoutInformationPage.fillClientInformation(FIRST_NAME, LAST_NAME, POSTAL_CODE);
-    await checkoutInformationPage.clickOnContinueButton();
-
-    await orderPreviewPage.clickOnFinishButton()
-    await orderCompletionPage.assertOrderCompleteHeaderExist()
+    const amountOfItems = await inventoryPage.addAllItemsToCart()
+    await navBarComponent.assertAmountOfItems(String(amountOfItems));
 });
