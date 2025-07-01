@@ -18,7 +18,6 @@ export class InventoryPage extends BasePage {
     public async addAllItemsToCart() {
         let amountOfItems = 0
         await this.items.first().waitFor({ state: 'visible' });
-        console.log(await this.items.all());
 
         const products = (await this.items.all())
         for (let index = 0; index < products.length; index++) {
