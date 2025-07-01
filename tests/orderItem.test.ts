@@ -7,7 +7,7 @@ import { CheckoutInformationPage } from '../pages/checkoutInformationPage';
 import { OrderPreviewPage } from '../pages/orderPreviewPage';
 import { OrderCompletionPage } from '../pages/orderCompletionPage';
 
-test('test title', async ({ page }) => {
+test('order item', async ({ page }) => {
     const BASE_URL = 'https://www.saucedemo.com/'
     const USER_NAME = 'standard_user'
     const PASSWORD = 'secret_sauce'
